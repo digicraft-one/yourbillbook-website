@@ -1,26 +1,112 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ybb-primary: #1b7a3d;
+  --ybb-primary-dark: #145c2e;
+  --ybb-primary-bright: #2e9b55;
+  --ybb-ink: #121812;
+  --ybb-muted: #5c6b5f;
+  --ybb-border: #d5ddd7;
+  --ybb-sheet: #f2fbf5;
+  --ybb-surface: #ffffff;
+  --ybb-warning: #9a6700;
+  --sm-orange: #e0781f;
+  --background: #f5f7f5;
+  --foreground: #121812;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--ybb-primary);
+  --color-primary-dark: var(--ybb-primary-dark);
+  --color-ink: var(--ybb-ink);
+  --color-muted: var(--ybb-muted);
+  --color-sheet: var(--ybb-sheet);
+  --color-border: var(--ybb-border);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--ybb-primary) 28%, white);
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+.hero-glow {
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 0%, rgba(46, 155, 85, 0.28), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 90% 10%, rgba(27, 122, 61, 0.18), transparent 50%),
+    linear-gradient(180deg, #eaf6ee 0%, #f5f7f5 55%, #f5f7f5 100%);
+}
+
+.grid-wash {
+  background-image:
+    linear-gradient(rgba(27, 122, 61, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27, 122, 61, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(180deg, black, transparent 90%);
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-rise {
+  animation: rise-in 0.7s ease-out both;
+}
+
+.animate-rise-delay {
+  animation: rise-in 0.8s ease-out 0.12s both;
+}
+
+.animate-rise-delay-2 {
+  animation: rise-in 0.85s ease-out 0.22s both;
+}
+
+.animate-float {
+  animation: float-soft 5.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise,
+  .animate-rise-delay,
+  .animate-rise-delay-2,
+  .animate-float {
+    animation: none;
+  }
 }
