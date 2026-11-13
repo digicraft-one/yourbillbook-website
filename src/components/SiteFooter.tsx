@@ -69,8 +69,7 @@ export function SiteFooter() {
               </span>
             </div>
             <p className="text-sm leading-relaxed text-white/70">
-              {site.storeMitr.tagline}. Cloud, team seats, multi-store — when
-              one phone is not enough.
+              {site.storeMitr.tagline}. For when one phone is not enough.
             </p>
           </a>
           <p className="mt-4 text-sm text-white/60">

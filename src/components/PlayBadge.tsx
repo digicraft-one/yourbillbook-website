@@ -20,7 +20,6 @@ export function PlayBadge({ className = "" }: Props) {
         width={200}
         height={78}
         className="h-[58px] w-auto"
-        priority
       />
     </a>
   );

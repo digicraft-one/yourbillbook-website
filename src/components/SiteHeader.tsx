@@ -4,7 +4,7 @@ import { nav, site } from "@/content/site";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--ybb-border)]/70 bg-[color-mix(in_srgb,var(--ybb-sheet)_88%,white)]/90 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-[var(--ybb-border)]/70 bg-[color-mix(in_srgb,var(--ybb-paper)_85%,transparent)] backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link href="/" className="flex items-center gap-2.5 min-w-0">
           <Image
@@ -13,7 +13,7 @@ export function SiteHeader() {
             width={36}
             height={36}
             className="h-9 w-9 rounded-lg"
-            priority
+            preload
           />
           <span className="font-display text-lg font-semibold tracking-tight text-[var(--ybb-ink)] truncate">
             {site.name}
@@ -21,6 +21,12 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex" aria-label="Primary">
+          <Link
+            href="/#try"
+            className="text-sm font-semibold text-[var(--ybb-ink)] underline decoration-[var(--ybb-marigold)] decoration-2 underline-offset-4"
+          >
+            Try a bill
+          </Link>
           {nav.map((item) => (
             <Link
               key={item.href}

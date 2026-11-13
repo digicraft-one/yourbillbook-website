@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PhoneFrame } from "@/components/PhoneFrame";
 import { PlayBadge } from "@/components/PlayBadge";
 import { features, site } from "@/content/site";
 
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 const deep = [
   {
     title: "Sale",
+    screen: "checkout",
     points: [
       "Product grid with search and barcode camera scan",
       "Favorites pinned on top; recent items after a completed sale",
@@ -22,6 +24,7 @@ const deep = [
   },
   {
     title: "Inventory",
+    screen: "inventory",
     points: [
       "Products with price, tax %, barcode, photo, low-stock threshold",
       "Stock adjust and stock history",
@@ -31,6 +34,7 @@ const deep = [
   },
   {
     title: "Khata & Home",
+    screen: "home",
     points: [
       "Customer bakaya, collect payment, credit limit",
       "Home totals for today, 7 days, 30 days, or custom range",
@@ -40,6 +44,7 @@ const deep = [
   },
   {
     title: "Print, share & safety",
+    screen: "receipt",
     points: [
       "Bluetooth ESC/POS 58 / 80 / 112 mm",
       "Thermal UPI QR image when UPI is on the bill",
@@ -96,19 +101,28 @@ export default function FeaturesPage() {
         {deep.map((block) => (
           <section
             key={block.title}
-            className="rounded-2xl border border-[var(--ybb-border)] bg-[var(--ybb-sheet)] p-6"
+            className="grid gap-6 rounded-[1.75rem] border border-[var(--ybb-border)] bg-[var(--ybb-surface)] p-6 sm:grid-cols-[150px_1fr]"
           >
-            <h2 className="font-display text-2xl font-semibold text-[var(--ybb-ink)]">
-              {block.title}
-            </h2>
-            <ul className="mt-4 space-y-2 text-sm leading-relaxed text-[var(--ybb-muted)]">
-              {block.points.map((p) => (
-                <li key={p} className="flex gap-2">
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--ybb-primary)]" />
-                  <span>{p}</span>
-                </li>
-              ))}
-            </ul>
+            <PhoneFrame
+              src={`/img/screens/${block.screen}.webp`}
+              alt={`${block.title} screen in YourBillBook`}
+              sizes="150px"
+              compact
+              className="mx-auto w-[150px] self-start"
+            />
+            <div>
+              <h2 className="font-display text-2xl font-semibold text-[var(--ybb-ink)]">
+                {block.title}
+              </h2>
+              <ul className="mt-4 space-y-2 text-sm leading-relaxed text-[var(--ybb-muted)]">
+                {block.points.map((p) => (
+                  <li key={p} className="flex gap-2">
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--ybb-primary)]" />
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </section>
         ))}
       </div>
